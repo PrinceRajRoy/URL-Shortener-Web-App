@@ -1,13 +1,14 @@
 .Login {
-    position: relative;
-    float: right;
-    height: 30vh;
+    position: absolute;
+    height: 37vh;
     width: 20vw;
-    margin: 1px 3vw 0px 0px;
+    margin: 1px 3vw 0px 78vw;
     background-color: rgb(142, 207, 186);
     box-shadow: 1px 2px 5px 1px;
     border: 1px solid rgb(178, 223, 189);
     z-index: 9999;
+    overflow: hidden;
+    display: flex;
 }
 
 .Login input {
@@ -18,3 +19,10 @@
 #loginForm {
     display: none;
 }
+
+#err2 {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 10px;
+    font-size: 10px;
+    color: red;
+  }

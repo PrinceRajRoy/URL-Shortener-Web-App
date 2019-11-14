@@ -25,7 +25,7 @@ class App extends React.Component {
             //For considering both capital and small letters
             var temp = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
             var rnd = Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000;
-            var URL = 'https://heroku.com/' + this.generateURL(rnd, temp);
+            var URL = 'https://demo.com/' + this.generateURL(rnd, temp);
 
             document.getElementById("result").innerHTML = "Generated URL : " + URL;
             console.log(user);
@@ -45,13 +45,18 @@ class App extends React.Component {
       return this.generateURL(Math.floor(num/62), temp) + temp[num % 62];
   }
 
-  login1 = () => {
+  login1 = (temp) => {
+    if(temp){
+      document.getElementById("loginForm").style.display = "none";
+    }
+    else {
     var x = document.getElementById("loginForm").style.display;
     console.log(x);
     if(x === "block")
         document.getElementById("loginForm").style.display = "none";
     else
         document.getElementById("loginForm").style.display = "block";
+    }
   }
 
   logout = () => {
@@ -108,13 +113,13 @@ class App extends React.Component {
             <span id="name">{this.state.name}</span>
             <i className="fa fa-sign-out"></i>
           </div>
-          <div id="login" onClick={() => this.login1()}>
+          <div id="login" onClick={() => this.login1(false)}>
             <span>Login</span>
             <i className="fa fa-sign-in"></i>
           </div>
         </header>
         <Login />
-        <div className="container" id="mainBody">
+        <div className="container" id="mainBody" onClick={() => this.login1(true)}>
           <div className="row">
             <form className="offset-md-1 col-md-6 text-center" id="Main"  onSubmit={this.Query}>
                 <input type="text" className="form-control" id="string"/>
