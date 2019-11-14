@@ -1,0 +1,94 @@
+#Main {
+  height: 50vh;
+  background-color: rgb(160, 191, 206);
+  margin-top: 30px;
+  padding: 40px;
+  border-radius: 10px;
+}
+
+#links {
+  min-height: 50vh;
+  background-color: rgb(160, 191, 206);
+  margin-top: 30px;
+  padding: 40px;
+  border-radius: 10px;
+}
+
+#mainBody {
+  z-index: 2;
+}
+
+#Main button {
+  margin-top: 10px;
+}
+
+#header {
+  background-color: rgb(56, 125, 185);
+  width: 100vw;
+  height: 8vh;
+}
+
+#loggedin {
+  display: flex;
+  margin: 10px;
+  float: right;
+  display: none;
+  cursor: pointer;
+}
+
+#logout , #name {
+  font-size: 15px;
+  margin-right: 10px;
+}
+
+#header img {
+  height: 5px;
+}
+
+#menu {
+  display: flex;
+  margin-left: 0px;
+}
+
+#login {
+  float: right;
+  font-size: 15px;
+  margin: 10px 140px 0px 0px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  cursor: pointer;
+}
+
+#login span, i {
+  margin: 10px 8px 10px 0px;
+}
+
+#result {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 10px;
+  font-size: 20px;
+  color: green;
+}
+
+#err {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 10px;
+  font-size: 20px;
+  color: red;
+  display: none;
+}
+
+#urlButton {
+  background-color: rgb(10, 10, 9);
+  margin: 10px;
+}
+
+#homeButton {
+  display: none;
+  background-color: rgb(10, 10, 9);
+  margin: 10px;
+}
+
+li {
+  margin: 10px;
+  border-radius: 10px 10px 10px 10px;
+}

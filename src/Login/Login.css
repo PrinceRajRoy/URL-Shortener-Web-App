@@ -1,0 +1,20 @@
+.Login {
+    position: relative;
+    float: right;
+    height: 30vh;
+    width: 20vw;
+    margin: 1px 3vw 0px 0px;
+    background-color: rgb(142, 207, 186);
+    box-shadow: 1px 2px 5px 1px;
+    border: 1px solid rgb(178, 223, 189);
+    z-index: 9999;
+}
+
+.Login input {
+    width: 80%;
+    margin: 20px auto;
+}
+
+#loginForm {
+    display: none;
+}
