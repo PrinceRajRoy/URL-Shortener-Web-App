@@ -10,7 +10,7 @@ class Urls extends React.Component {
   URLS = () => {
       var user = localStorage.getItem("user");
       db.collection(user).get().then(data => {
-          console.log(data);
+          //console.log(data);
       })
 
       return (

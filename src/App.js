@@ -25,10 +25,10 @@ class App extends React.Component {
             //For considering both capital and small letters
             var temp = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
             var rnd = Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000;
-            var URL = 'https://demo.com/' + this.generateURL(rnd, temp);
+            var URL = 'https://link.sh/' + this.generateURL(rnd, temp);
 
             document.getElementById("result").innerHTML = "Generated URL : " + URL;
-            console.log(user);
+            //console.log(user);
             db.collection(user).doc(ogURL).set({
               shortURL: URL
             }, {merge: true});
@@ -48,21 +48,43 @@ class App extends React.Component {
   login1 = (temp) => {
     if(temp){
       document.getElementById("loginForm").style.display = "none";
+      document.getElementById("signupForm").style.display = "none";
     }
     else {
     var x = document.getElementById("loginForm").style.display;
-    console.log(x);
+    //console.log(x);
     if(x === "block")
         document.getElementById("loginForm").style.display = "none";
-    else
+    else{
         document.getElementById("loginForm").style.display = "block";
+        document.getElementById("signupForm").style.display = "none";
+      }
+    }
+  }
+
+  signup = (temp) => {
+    if(temp){
+      document.getElementById("signupForm").style.display = "none";
+      document.getElementById("loginForm").style.display = "none";
+    }
+    else {
+    var x = document.getElementById("signupForm").style.display;
+    //console.log(x);
+    if(x === "block")
+        document.getElementById("signupForm").style.display = "none";
+    else{
+        document.getElementById("signupForm").style.display = "block";
+        document.getElementById("loginForm").style.display = "none";
+      }
     }
   }
 
   logout = () => {
     firebase.auth().signOut().then(() => {
-      console.log("Successfully Logged Out");
-    })
+      this.setState({
+        urls: []
+      })
+    });
   }
 
   state = {
@@ -76,12 +98,26 @@ class App extends React.Component {
         name: user.email
       });
       document.getElementById("loginForm").style.display = "none";
+      document.getElementById("signupForm").style.display = "none";
       document.getElementById("login").style.display = "none";
+      document.getElementById("signup").style.display = "none";
       document.getElementById("loggedin").style.display = "block";
+      document.getElementById("Main").style.display = 'block';
+      document.getElementById("links").style.display = 'block';
+      document.getElementById("welcome").style.display = 'none';
       this.fetch();
     } else {
       document.getElementById("login").style.display = "block";
+      document.getElementById("signup").style.display = "block";
       document.getElementById("loggedin").style.display = "none";
+      document.getElementById("Main").style.display = 'none';
+      document.getElementById("links").style.display = 'none';
+      document.getElementById("welcome").style.display = 'block';
+      document.getElementById("string").value = "";
+      document.getElementById("result").innerHTML = "";
+      document.getElementById("err2").innerHTML = "";
+      document.getElementById("email").value = "";
+      document.getElementById("pass").value = "";
     }
   });
 
@@ -97,9 +133,9 @@ class App extends React.Component {
     var user = localStorage.getItem("user");
     db.collection(user).get().then(data => {
       data.docs.forEach(doc => {
-        console.log(doc.data(), doc.id)
+        //console.log(doc.data(), doc.id)
         this.setState({
-          urls: [...this.state.urls, <li className="list-group-item">{doc.id} : {doc.data()['shortURL']}</li>]
+          urls: [...this.state.urls, <li className="list-group-item" key={doc.id}>{doc.id} : {doc.data()['shortURL']}</li>]
         })
       })
     })
@@ -117,12 +153,16 @@ class App extends React.Component {
             <span>Login</span>
             <i className="fa fa-sign-in"></i>
           </div>
+          <div id="signup" onClick={() => this.signup(false)}>
+            <span>SignUp</span>
+            <i className="fa fa-sign-in"></i>
+          </div>
         </header>
         <Login />
         <div className="container" id="mainBody" onClick={() => this.login1(true)}>
           <div className="row">
             <form className="offset-md-1 col-md-6 text-center" id="Main"  onSubmit={this.Query}>
-                <input type="text" className="form-control" id="string"/>
+                <input type="text" className="form-control" id="string" placeholder="Enter Your URL"/>
                 <button className="btn btn-primary">Submit</button><br/>
                 <div id="result"></div>
                 <span id="err">URL exists! Please Enter Another</span>
@@ -132,6 +172,10 @@ class App extends React.Component {
                 {this.state.urls}
             </div>
           </div>
+        </div>
+        <div className="container" id="welcome" onClick={() => this.login1(true)}>
+              Welcome To URL Shortener<br/>
+              Please Login To Continue!
         </div>
       </div>
     );
